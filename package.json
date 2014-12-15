@@ -1,0 +1,34 @@
+{
+  "author": "Dennis Torres <djtorres0@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/psirenny/racer-model-local/issues"
+  },
+  "dependencies": {
+    "dom-storage": "^2.0.1",
+    "traverse": "^0.6.6"
+  },
+  "description": "Add local storage reads/writes to a Racer model.",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.0.1",
+    "racer": "^0.6.0-alpha24"
+  },
+  "keywords": [
+    "derby",
+    "local",
+    "racer",
+    "storage"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "racer-model-local",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/psirenny/racer-model-local.git"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha test"
+  },
+  "version": "1.0.0"
+}
