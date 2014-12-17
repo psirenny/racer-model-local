@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "dom-storage": "^2.0.1",
+    "racer": "^0.6.0-alpha24",
     "traverse": "^0.6.6"
   },
   "description": "Add local storage reads/writes to a Racer model.",
@@ -30,5 +31,5 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha test"
   },
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

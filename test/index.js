@@ -10,19 +10,25 @@ describe('racer-model-local', function () {
     lib.should.be.a.Function;
   });
 
-  it('should return a Model', function () {
+  it('should return an object', function () {
     var model = new racer.Model();
-    lib(model).should.be.an.instanceOf(racer.Model);
+    lib(model).should.be.an('object');
   });
 
-  describe.skip('SET', function () {
+  describe('SET', function () {
+    it('should be a function', function () {
+      var model = new racer.Model();
+      var local = lib(model);
+      local.set.should.be.a('function');
+    });
+
     it('should write to the model', function () {
       var model = new racer.Model();
       var local = lib(model);
       local.set('_page.foo', 'bar');
-      local.data.should.have.property('_page');
-      local.data._page.should.have.property('foo');
-      local.data._page.foo.should.equal('bar');
+      model.get('_page').should.be.an('object');
+      model.get('_page').should.have.property('foo');
+      model.get('_page.foo').should.equal('bar');
     });
 
     it('should write to local storage', function () {
@@ -38,6 +44,12 @@ describe('racer-model-local', function () {
   });
 
   describe('GET', function () {
+    it('should be a function', function () {
+      var model = new racer.Model();
+      var local = lib(model);
+      local.get.should.be.a('function');
+    });
+
     it('should read from the model', function () {
       var model = new racer.Model();
       var local = lib(model);
@@ -47,7 +59,7 @@ describe('racer-model-local', function () {
       local.get('_page.foo').should.equal('bar');
     });
 
-    it('should read from local storage', function () {
+    it.skip('should read from local storage', function () {
       var model = new racer.Model();
       var local = lib(model);
       var obj = JSON.stringify({foo: 'bar'});
