@@ -2,16 +2,13 @@
 
 var racer = require('racer');
 var traverse = require('traverse');
-var Storage = require('dom-storage');
 
-/*if (typeof localStorage === 'undefined') {
-  var localStorage = new Storage('./db.json', {strict: true});
-}*/
+if (!global.localStorage) {
+  require('dom-storage');
 
-if (typeof localStorage === 'undefined') {
-  localStorage = {
+  global.localStorage = {
     getItem: function () {},
-    setItem: function() {}
+    setItem: function () {}
   };
 }
 
@@ -29,12 +26,12 @@ Local.prototype._del = function (segments) {
   var root = segments[0];
   var path = segments.slice(1);
   if (path[0]) {
-    var obj = localStorage.getItem(root) || {};
+    var obj = global.localStorage.getItem(root) || {};
     obj = JSON.parse(obj);
     traverse(obj).set(path, undefined);
-    localStorage.setItem(root, JSON.stringify(obj));
+    global.localStorage.setItem(root, JSON.stringify(obj));
   } else {
-    localStorage.removeItem(root);
+    global.localStorage.removeItem(root);
   }
   return this.model._del.call(this.model, segments);
 };
@@ -42,7 +39,7 @@ Local.prototype._del = function (segments) {
 Local.prototype._get = function (segments) {
   var root = segments[0];
   var path = segments.slice(1);
-  var obj = localStorage.getItem(root) || '{}';
+  var obj = global.localStorage.getItem(root) || '{}';
   obj = JSON.parse(obj);
   var value = traverse(obj).get(path);
   if (typeof value !== 'undefined') return value;
@@ -52,9 +49,9 @@ Local.prototype._get = function (segments) {
 Local.prototype._set = function (segments, value, cb) {
   var root = segments[0];
   var path = segments.slice(1);
-  var obj = JSON.parse(localStorage.getItem(root) || '{}');
+  var obj = JSON.parse(global.localStorage.getItem(root) || '{}');
   traverse(obj).set(path, value);
-  localStorage.setItem(root, JSON.stringify(obj));
+  global.localStorage.setItem(root, JSON.stringify(obj));
   return this.model._set.call(this.model, segments, value, cb);
 };
 
