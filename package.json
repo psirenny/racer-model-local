@@ -4,7 +4,6 @@
     "url": "https://github.com/psirenny/racer-model-local/issues"
   },
   "dependencies": {
-    "dom-storage": "^2.0.1",
     "racer": "^0.6.0-alpha24",
     "traverse": "^0.6.6"
   },
@@ -31,5 +30,5 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha test"
   },
-  "version": "1.0.3"
+  "version": "1.0.4"
 }
