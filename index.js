@@ -1,3 +1,5 @@
+'use strict';
+
 var racer = require('racer');
 var traverse = require('traverse');
 var Storage = require('dom-storage');
@@ -50,7 +52,7 @@ Local.prototype._get = function (segments) {
 Local.prototype._set = function (segments, value, cb) {
   var root = segments[0];
   var path = segments.slice(1);
-  var obj = {};
+  var obj = JSON.parse(localStorage.getItem(root) || '{}');
   traverse(obj).set(path, value);
   localStorage.setItem(root, JSON.stringify(obj));
   return this.model._set.call(this.model, segments, value, cb);
